@@ -86,7 +86,6 @@ namespace BlaneCombat
         public void TakeDamage(int amount)
         {
             Health -= amount;
-
         }
 
         /// <summary>

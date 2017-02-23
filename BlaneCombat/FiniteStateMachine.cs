@@ -44,9 +44,13 @@ namespace BlaneCombat
         /// </summary>
         /// <param name="start">Dictionary key we are looking for</param>
         /// <param name="end">Value we are adding to the value of the key</param>
-        public void AddTransiton(string start, T end)
+        public void AddTransiton(T start, T end)
         {
-
+            if(TransitionTable.ContainsKey(start.ToString()))
+            {
+                if (!TransitionTable[start.ToString()].Contains(end))
+                    TransitionTable[start.ToString()].Add(end);
+            }
         }
 
         /// <summary>
@@ -59,7 +63,11 @@ namespace BlaneCombat
         /// <param name="goal"></param>
         public void TryTransition(T goal)
         {
-
+            if(TransitionTable.ContainsKey(CurrentState.ToString()))
+            {
+                if (TransitionTable[CurrentState.ToString()].Contains(goal))
+                    CurrentState = goal;
+            }
         }
     }
 }

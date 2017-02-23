@@ -30,11 +30,16 @@ namespace BlaneCombat
         /// <param name="party">PlayerParty = party</param>
         public void SetPlayerParty(Party party)
         {
-            PlayerParty = party;
-            //if (!Fighters.Contains())
-            //    Fighters.Add();
+            if (EnemyParty != party)
+            {
+                PlayerParty = party;
+                foreach (var c in PlayerParty.PartyMembers)
+                {
+                    if(!Fighters.Contains(c))
+                        Fighters.Add(c);
+                }
+            }
             SortFighters();
-
         }
 
         /// <summary>
@@ -46,9 +51,15 @@ namespace BlaneCombat
         /// <param name="party">EnemyParty = party</param>
         public void SetEnemyParty(Party party)
         {
-            EnemyParty = party;
-            //if (!Fighters.Contains())
-            //    Fighters.Add();
+            if (PlayerParty != party)
+            {
+                EnemyParty = party;
+                foreach (var c in EnemyParty.PartyMembers)
+                {
+                    if (!Fighters.Contains(c))
+                        Fighters.Add(c);
+                }
+            }
             SortFighters();
         }
 
@@ -60,7 +71,22 @@ namespace BlaneCombat
         /// </summary>
         private void SortFighters()
         {
-            
+            for(int i = 0; i < Fighters.Count(); i++)
+            {
+                for(int j = 0; j < Fighters.Count(); j++)
+                {
+                    if(Fighters[i] != Fighters[j])
+                    {
+                        if(Fighters[i].Speed < Fighters[j].Speed)
+                        {
+                            Character temp = Fighters[i];
+                            Fighters[i] = Fighters[j];
+                            Fighters[j] = temp;
+                        }
+                    }
+                }
+            }
+            ActiveCharacter = Fighters.First();
         }
 
         /// <summary>
@@ -72,7 +98,9 @@ namespace BlaneCombat
         /// </summary>
         public void SetActiveCharacter()
         {
-            
+            ActiveCharacter = (ActiveCharacter != Fighters.Last()) ? 
+                ActiveCharacter = Fighters[Fighters.IndexOf(ActiveCharacter) + 1] : 
+                ActiveCharacter = Fighters.First();
         }
     }
 }

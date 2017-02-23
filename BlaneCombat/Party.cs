@@ -21,7 +21,7 @@ namespace BlaneCombat
         public Party()
         {
             PartyMembers = new List<Character>();
-            PartyCapacity = 0;
+            PartyCapacity = 2;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace BlaneCombat
         /// <param name="partyMember"></param>
         public void AddPartyMember(Character partyMember)
         {
-            if (!partyMember.IsDead() && PartyCapacity != 2)
+            if (!partyMember.IsDead() && PartyMembers.Count() < PartyCapacity)
                 PartyMembers.Add(partyMember);
         }
     }
