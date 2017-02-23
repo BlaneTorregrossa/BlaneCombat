@@ -15,12 +15,13 @@ namespace BlaneCombat
 
         #region Constructors
         /// <summary>
-        /// News the PartyMemebers list so that it is no longer null
+        /// News the PartyMembers list so that it is no longer null
         /// Sets a default value for PartyCapacity
         /// </summary>
         public Party()
         {
-
+            PartyMembers = new List<Character>();
+            PartyCapacity = 0;
         }
 
         /// <summary>
@@ -30,7 +31,8 @@ namespace BlaneCombat
         /// <param name="partyCapacity">PartyCapacity = partyCapacity</param>
         public Party(int partyCapacity)
         {
-
+            PartyMembers = new List<Character>();
+            PartyCapacity = partyCapacity; 
         }
         #endregion
 
@@ -41,7 +43,8 @@ namespace BlaneCombat
         /// <param name="partyMember"></param>
         public void AddPartyMember(Character partyMember)
         {
-
+            if (!partyMember.IsDead() && PartyCapacity != 2)
+                PartyMembers.Add(partyMember);
         }
     }
 }

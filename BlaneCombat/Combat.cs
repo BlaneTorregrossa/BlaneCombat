@@ -9,7 +9,7 @@ namespace BlaneCombat
     class Combat
     {
         public Party PlayerParty;
-        public Party EnemyPartty;
+        public Party EnemyParty;
         public Character ActiveCharacter;
         public List<Character> Fighters;
 
@@ -18,31 +18,38 @@ namespace BlaneCombat
         /// </summary>
         public Combat()
         {
-
+            Fighters = new List<Character>();
         }
 
         /// <summary>
         /// Assigns the value of PlayerParty to value of the argument passed in.
         /// Then gets all the Characters in the party and adds them to the List
-        /// of Fighters if they are not all ready in the list;
+        /// of Fighters if they are not already in the list;
         /// Invokes the SortFighers function
         /// </summary>
         /// <param name="party">PlayerParty = party</param>
         public void SetPlayerParty(Party party)
         {
+            PlayerParty = party;
+            //if (!Fighters.Contains())
+            //    Fighters.Add();
+            SortFighters();
 
         }
 
         /// <summary>
         /// Assigns the value of EnemyParty to value of the argument passed in.
         /// Then gets all the Characters in the party and adds them to the List
-        /// of Fighters if they are not all ready in the list;
+        /// of Fighters if they are not already in the list;
         /// Invokes the SortFighers function
         /// </summary>
         /// <param name="party">EnemyParty = party</param>
         public void SetEnemyParty(Party party)
         {
-
+            EnemyParty = party;
+            //if (!Fighters.Contains())
+            //    Fighters.Add();
+            SortFighters();
         }
 
         /// <summary>
@@ -53,7 +60,7 @@ namespace BlaneCombat
         /// </summary>
         private void SortFighters()
         {
-
+            
         }
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace BlaneCombat
         /// </summary>
         public void SetActiveCharacter()
         {
-
+            
         }
     }
 }

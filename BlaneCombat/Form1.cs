@@ -15,6 +15,9 @@ namespace BlaneCombat
         public Form1()
         {
             InitializeComponent();
+
+
+
         }
     }
 }
